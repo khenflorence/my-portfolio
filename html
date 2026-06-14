@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khen Florence Osi | Portfolio</title>
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            /* Default Dark Mode Variables */
+            --bg-main: #1A1D24; 
+            --bg-surface: #262A36; 
+            --text-primary: #FFFFFF;
+            --text-secondary: #A0AEC0;
+            --accent: #CBD5E1;
+            --border-color: #3F4451;
+            --active-underline: #FFFFFF;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Light Mode Variables (applied when the body has the .light-mode class) */
+        body.light-mode {
+            --bg-main: #F9FAFB; 
+            --bg-surface: #FFFFFF; 
+            --text-primary: #111827;
+            --text-secondary: #4B5563;
+            --accent: #2563EB;
+            --border-color: #E5E7EB;
+            --active-underline: #111827;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            /* Smooth transition when switching themes */
+            transition: background-color 0.3s ease, color 0.3s ease; 
+        }
+
+        /* --- Navigation --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .search-icon-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-icon-nav:hover {
+            border-color: var(--text-primary);
+            color: var(--text-primary);
+        }
+
+        .nav-center {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-center a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding-bottom: 0.3rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-center a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-center a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-center a.active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 2px;
+            background-color: var(--active-underline);
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            user-select: none;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--text-primary);
+            color: var(--text-primary);
+        }
+
+        .nav-profile-img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            object-fit: cover;
+            transition: border-color 0.3s ease;
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            min-height: 70vh;
+        }
+
+        .hero-left h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            font-weight: 600;
+            letter-spacing: -1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-left p {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+            line-height: 1.4;
+            transition: color 0.3s ease;
+        }
+
+        /* Search Bar */
+        .search-container {
+            position: relative;
+            max-width: 450px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 1rem 1.5rem 1rem 3rem;
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar:focus {
+            border-color: var(--text-primary);
+            box-shadow: 0 0 0 1px var(--text-primary);
+        }
+
+        .search-bar::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .search-icon-input {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .search-count {
+            position: absolute;
+            right: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--bg-surface);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .try-search-text {
+            display: block;
+            margin-top: 1rem;
+            margin-left: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+        }
+
+        /* Hero Right Image - Updated to a sleek circle */
+        .hero-right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-main-img {
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid var(--bg-surface);
+            box-shadow: 0 20px 40px var(--shadow-color);
+            transition: all 0.4s ease;
+        }
+
+        .hero-main-img:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        /* --- Content Sections --- */
+        section {
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--bg-surface);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px var(--shadow-color);
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .card p, .card ul {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .card ul {
+            list-style-position: inside;
+            margin-top: 0.5rem;
+        }
+
+        .date-badge {
+            display: inline-block;
+            font-size: 0.8rem;
+            background-color: var(--bg-main);
+            border: 1px solid var(--border-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 4rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            #hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            .hero-left h1 { font-size: 2.5rem; }
+            .search-container { margin: 0 auto; }
+            .try-search-text { margin-left: 0; }
+            .nav-center { display: none; }
+            .hero-main-img { width: 280px; height: 280px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-left">
+            <a href="#" class="logo">Khen F. Osi</a>
+            <div class="search-icon-nav">&#128269;</div>
+        </div>
+        
+        <div class="nav-center">
+            <a href="#about" class="active">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+        </div>
+
+        <div class="nav-right">
+            <!-- The theme toggle button -->
+            <div class="theme-toggle" id="theme-toggle-btn" title="Toggle Light/Dark Mode">🌓</div>
+            <img src="IMG_9322 copy (1).jpg" alt="Profile" class="nav-profile-img">
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-left">
+            <h1>Aerospace Engineering & Full-Stack Development.</h1>
+            <p>Bridging the gap between complex hardware engineering and practical software development. 📡</p>
+            
+            <div class="search-container">
+                <span class="search-icon-input">&#128269;</span>
+                <input type="text" class="search-bar" placeholder="Search projects or skills">
+                <div class="search-count">
+                    <span>📑</span> 12
+                </div>
+            </div>
+            <span class="try-search-text">Try the full site search</span>
+        </div>
+
+        <div class="hero-right">
+            <img src="IMG_9322 copy (1).jpg" alt="Khen Florence Osi" class="hero-main-img">
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Technical Arsenal</h2>
+        <div class="grid-container">
+            <div class="card">
+                <h3>Hardware & Electronics</h3>
+                <ul>
+                    <li>Arduino & ESP32 Programming</li>
+                    <li>PCB Soldering & Circuitry</li>
+                    <li>Sensor Integration</li>
+                    <li>Servo Motor Mechanics</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Software Development</h3>
+                <ul>
+                    <li>Full-stack Development</li>
+                    <li>HTML/CSS, JavaScript, Python</li>
+                    <li>Interactive UI/UX Design</li>
+                    <li>Trajectory Simulation</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Engineering Applications</h3>
+                <ul>
+                    <li>Robotic Arms</li>
+                    <li>Automated Claws</li>
+                    <li>Waste-Picking Mechanisms</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Featured Work</h2>
+        <div class="grid-container">
+            <div class="card">
+                <span class="date-badge">Expected April 2026</span>
+                <h3>PIDAL (Campus Mobility App)</h3>
+                <p>An interactive transit application designed for the university community. Integrates live mapping features and a QR-code bike-unlocking verification system to streamline campus mobility.</p>
+            </div>
+            <div class="card">
+                <span class="date-badge">Expected April 2026</span>
+                <h3>TECHNOFUSION 2026: CONSTELLAR</h3>
+                <p>Competed as a core member of the "Delta V Lopers" team at BatStateU Hackathon, collaborating on rapid technological solutions under strict deadlines.</p>
+            </div>
+            <div class="card">
+                <span class="date-badge">Ongoing</span>
+                <h3>Automated Robotics & Simulators</h3>
+                <p>Engineered practical robotic hardware solutions handling complex wiring logic. Developed interactive digital simulators, including a rocket trajectory simulation mapping out launch specifications.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section id="experience">
+        <h2>Leadership & Experience</h2>
+        <div class="grid-container">
+            <div class="card">
+                <span class="date-badge">2023 – 2025</span>
+                <h3>President | LIS Kalikasan</h3>
+                <p>Led organizational activities and spearheaded environmental and community initiatives for two consecutive years.</p>
+            </div>
+            <div class="card">
+                <span class="date-badge">Expected December 2025</span>
+                <h3>Project Leader | Project W.A.S.H.</h3>
+                <p>Organized and directed a community extension proposal for Waste Awareness and Sanitation in Barangay Libjo, managing organizational structures for a large cohort.</p>
+            </div>
+            <div class="card">
+                <span class="date-badge">Expected April 2026 – May 2026</span>
+                <h3>Lead Organizer | Kabataan ng Libjo</h3>
+                <p>Spearheaded a 6-week literacy and numeracy program (Mahusay at Matalino), successfully managing scheduling, budget monitoring, and program announcements.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications & Awards Section -->
+    <section id="certifications">
+        <h2>Professional Background & Awards</h2>
+        <div class="grid-container">
+            <div class="card">
+                <h3>Work Experience</h3>
+                <ul>
+                    <li><strong>Cook:</strong> Noki</li>
+                    <li><strong>Staff Member:</strong> Shakey's Halang</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Awards & Certifications</h3>
+                <ul>
+                    <li><strong>Award:</strong> BEST in TVL Cookery</li>
+                    <li><strong>Certification:</strong> The Pinas Project</li>
+                    <li><strong>Certification:</strong> ES SET Certificate (B1)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Khen Florence Osi. Built with code and engineering principles.</p>
+    </footer>
+
+    <script>
+        // Active state navigation logic
+        document.querySelectorAll('.nav-center a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelectorAll('.nav-center a').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Theme Toggle Logic
+        const themeBtn = document.getElementById('theme-toggle-btn');
+        
+        themeBtn.addEventListener('click', () => {
+            // Toggle the 'light-mode' class on the body
+            document.body.classList.toggle('light-mode');
+            
+            // Optional: Change the icon depending on the mode
+            if(document.body.classList.contains('light-mode')) {
+                themeBtn.textContent = '☀️'; // Sun icon for light mode
+            } else {
+                themeBtn.textContent = '🌓'; // Moon/half icon for dark mode
+            }
+        });
+    </script>
+</body>
+</html>
